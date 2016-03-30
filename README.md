@@ -1,4 +1,4 @@
-docker-plantuml
+docker-json-schema-validator
 ==========
 
 Docker container with Alpine Linux, Java and json-schema-validator.  
