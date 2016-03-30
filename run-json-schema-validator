@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+__run_jsonschemavalidator() {
+    local docker_image="miy4/json-schema-validator"
+    local host_src_volume="${PWD}"
+    local container_dest_volume="/work"
+
+    docker run --volume="${host_src_volume}:${container_dest_volume}" --workdir="${container_dest_volume}" --rm "${docker_image}" "$@"
+}
+
+__run_jsonschemavalidator "$@"
