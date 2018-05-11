@@ -2,7 +2,7 @@ docker-json-schema-validator
 ==========
 
 Docker container with Alpine Linux, Java and json-schema-validator.  
-[json-schema-validator](https://github.com/fge/json-schema-validator) is a JSON Schema validation implementation in Java.
+[json-schema-validator](https://github.com/java-json-tools/json-schema-validator) is a JSON Schema validation implementation in Java.
 
 ### Installation
 
