@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java:jre
+FROM anapsix/alpine-java
 
 ENV JSON_SCHEMA_VALIDATOR_VERSION 2.2.6
 ENV LANG en_US.UTF-8
