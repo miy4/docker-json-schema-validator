@@ -30,3 +30,8 @@ $ /path/to/run-json-schema-validator [JSON_SCHEMA_VALIDATOR_ARGUMENTS]
 
 `docker run` and `run-json-schema-validator` accept and pass a set of parameters to json-schema-validator CLI.  
 You can see command help (`docker run ... --help` or `run-json-schema-validator --help`) for more details. 
+
+### License
+
+MIT
+
