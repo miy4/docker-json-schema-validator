@@ -1,6 +1,6 @@
 FROM docker.io/alpine:3
 
-ENV JSON_SCHEMA_VALIDATOR_VERSION 2.2.8
+ENV JSON_SCHEMA_VALIDATOR_VERSION 2.2.14
 ENV LANG en_US.UTF-8
 RUN apk add --no-cache openjdk17-jre curl \
     && mkdir /app \
