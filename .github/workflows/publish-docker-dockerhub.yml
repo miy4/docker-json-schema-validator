@@ -1,0 +1,50 @@
+name: Publish Docker image to Docker Hub
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+    paths:
+      - Dockerfile
+
+env:
+  DOCKER_IMAGE: json-schema-validator
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Test that the build completes successfully
+        run: docker build .
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Build Docker image
+        run: docker build --tag "${DOCKER_IMAGE}" .
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Push Docker image to docker.io
+        run: |
+          TAG=${{ github.ref }}
+          if [[ ${TAG} == refs/heads/master ]]; then
+              TAG='latest'
+          else
+              TAG="${TAG##*/}"
+          fi
+          SOURCE_IMAGE="${DOCKER_IMAGE}"
+          TARGET_IMAGE=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${DOCKER_IMAGE}:${TAG}
+          docker tag "${SOURCE_IMAGE}" "${TARGET_IMAGE}"
+          docker push "${TARGET_IMAGE}"
